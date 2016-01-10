@@ -199,18 +199,32 @@ public class ASRWithIntent extends Activity {
 					//Creates a collection of strings, each one with a recognition result and its confidence
 	            	//following the structure "Phrase matched (conf: 0.5)"
 					ArrayList<String> nBestView = new ArrayList<String>();
-					
+
+					ArrayList<String> misMejores = new ArrayList<String>();
+
+					//Voy a realizar un filtrado, es decir, 
+
+
 					for(int i=0; i<nBestList.size(); i++){
 						if(nBestConfidences!=null){
 							if(nBestConfidences[i]>=0)
-								nBestView.add(nBestList.get(i) + " (conf: " + String.format("%.2f", nBestConfidences[i]) + ")");
+								misMejores.add(nBestList.get(i));
 							else
-								nBestView.add(nBestList.get(i) + " (no confidence value available)");
+								misMejores.add(nBestList.get(i));
 						}
 						else
-							nBestView.add(nBestList.get(i) + " (no confidence value available)");
+							misMejores.add(nBestList.get(i) + " (no confidence value available)");
 					}
-					
+
+					for (int i=0; i<misMejores.size(); i++){
+						String aux;
+						aux = misMejores.get(i);
+						String [] campos = aux.split("\\s+");
+						if (campos.length == 2) {
+							nBestView.add(misMejores.get(i));
+						}
+					}
+
 					//Includes the collection in the ListView of the GUI
 					setListView(nBestView);
 					
