@@ -1,0 +1,7 @@
+http://developer.android.com/intl/es/training/basics/activity-lifecycle/recreating.html#RestoreState
+
+http://www.wavsource.com/sfx/sfx2.htm
+
+http://stackoverflow.com/questions/3041763/android-playing-an-audio-clip-onclick
+
+http://webtutsdepot.com/2011/08/20/android-sdk-accelerometer-example-tutorial/
