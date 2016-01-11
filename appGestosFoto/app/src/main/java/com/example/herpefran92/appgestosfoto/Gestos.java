@@ -24,7 +24,7 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
     final static int cons = 0;
 
     TextView salida_x, salida_y, gesto;
-    Boolean tocado1=false, tocado5=false, tocado9=false, tocado6=false, tocado3=false;
+    Boolean tocado1=false, tocado5=false, tocado9=false, tocado6=false, tocado3=false, fotolanzada = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,40 +48,89 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
             int aux_y = (int) event.getRawY();
             salida_x.setText("Pos_X: " + Integer.toString(aux_x));
             salida_y.setText("Pos_Y: " + Integer.toString(aux_y));
-            int rango = 15;
-            int x_1 = 143, y_1 = 330, x_5 = 400, y_5 = 470, x_9 = 620, y_9 = 615;
-            int x_6 = 626, y_6 = 482, x_3 = 640, y_3 = 345;
-            if(aux_x >= (x_1-rango) && aux_x <= (x_1+rango)){
-                if (aux_y >= (y_1-rango) && aux_y <= (y_1+rango)){
+            int rango = 50;
+            int x_1 = 162, y_1 = 346, x_5 = 387, y_5 = 475, x_9 = 610, y_9 = 625;
+            int x_6 = 614, y_6 = 482, x_3 = 616, y_3 = 341;
+            int rango2 = 30;
+            int x_2 = 384, y_2 = 341, x_4 = 163, y_4 = 481, x_7 = 158, y_7 = 621, x_8 = 381, y_8 = 618;
+            int ast_x = 155, ast_y = 753, x_0 = 381, y_0 = 759, alm_x = 613, alm_y = 756;
+
+            if((aux_x >= (x_1-rango)) && (aux_x <= (x_1+rango))){
+                if ((aux_y >= (y_1-rango)) && (aux_y <= (y_1+rango))){
                     tocado1 = true;
                     gesto.setText("Tocado1");
                 }
             }
-            else if(tocado1 && aux_x >= (x_5-rango) && aux_x <= (x_5+rango)){
-                if (aux_y >= (y_5-rango) && aux_y <= (y_5+rango)){
+            if(tocado1 && (aux_x >= (x_5-rango)) && (aux_x <= (x_5+rango))){
+                if ((aux_y >= (y_5-rango)) && (aux_y <= (y_5+rango))){
                     tocado5 = true;
                     gesto.setText("Tocado1-5");
                 }
             }
-            else if(tocado5 && aux_x >= (x_9-rango) && aux_x <= (x_9+rango)){
-                if (aux_y >= (y_9-rango) && aux_y <= (y_9+rango)){
+            if(tocado5 && (aux_x >= (x_9-rango)) && (aux_x <= (x_9+rango))){
+                if ((aux_y >= (y_9-rango)) && (aux_y <= (y_9+rango))){
                     tocado9 = true;
                     gesto.setText("Tocado1-5-9");
                 }
             }
-            else if(tocado9 && aux_x >= (x_6-rango) && aux_x <= (x_6+rango)){
-                if (aux_y >= (y_6-rango) && aux_y <= (y_6+rango)){
+            if(tocado9 && (aux_x >= (x_6-rango)) && (aux_x <= (x_6+rango))){
+                if ((aux_y >= (y_6-rango)) && (aux_y <= (y_6+rango))){
                     tocado6 = true;
                     gesto.setText("Tocado1-5-9-6");
                 }
             }
-            else if(tocado6 && aux_x >= (x_3-rango) && aux_x <= (x_3+rango)){
-                if (aux_y >= (y_3-rango) && aux_y <= (y_3+rango)){
+            if(tocado6 && (aux_x >= (x_3-rango)) && (aux_x <= (x_3+rango))) {
+                if ((aux_y >= (y_3 - rango)) && (aux_y <= (y_3 + rango))) {
                     tocado3 = true;
                     gesto.setText("Gesto aceptado");
+                    if (fotolanzada == false) {
+                        fotolanzada = true;
+                        i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        startActivityForResult(i, cons);
+                    }
 
-                    i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(i, cons);
+                }
+            }
+            if((aux_x >= (x_2-rango2)) && (aux_x <= (x_2+rango2))) {
+                if ((aux_y >= (y_2 - rango2)) && (aux_y <= (y_2 + rango2))) {
+                    tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
+                    gesto.setText("Intentalo de nuevo");
+                }
+            }
+            if((aux_x >= (x_4-rango2)) && (aux_x <= (x_4+rango2))) {
+                if ((aux_y >= (y_4 - rango2)) && (aux_y <= (y_4 + rango2))) {
+                    tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
+                    gesto.setText("Intentalo de nuevo");
+                }
+            }
+            if((aux_x >= (x_7-rango2)) && (aux_x <= (x_7+rango2))) {
+                if ((aux_y >= (y_7 - rango2)) && (aux_y <= (y_7 + rango2))) {
+                    tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
+                    gesto.setText("Intentalo de nuevo");
+                }
+            }
+            if((aux_x >= (x_8-rango2)) && (aux_x <= (x_8+rango2))) {
+                if ((aux_y >= (y_8 - rango2)) && (aux_y <= (y_8 + rango2))) {
+                    tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
+                    gesto.setText("Intentalo de nuevo");
+                }
+            }
+            if((aux_x >= (x_0-rango2)) && (aux_x <= (x_0+rango2))) {
+                if ((aux_y >= (y_0 - rango2)) && (aux_y <= (y_0 + rango2))) {
+                    tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
+                    gesto.setText("Intentalo de nuevo");
+                }
+            }
+            if((aux_x >= (ast_x-rango2)) && (aux_x <= (ast_x+rango2))) {
+                if ((aux_y >= (ast_y - rango2)) && (aux_y <= (ast_y + rango2))) {
+                    tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
+                    gesto.setText("Intentalo de nuevo");
+                }
+            }
+            if((aux_x >= (alm_x-rango2)) && (aux_x <= (alm_x+rango2))) {
+                if ((aux_y >= (alm_y - rango2)) && (aux_y <= (alm_y + rango2))) {
+                    tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
+                    gesto.setText("Intentalo de nuevo");
                 }
             }
         }
