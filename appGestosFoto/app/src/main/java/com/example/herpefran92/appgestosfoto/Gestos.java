@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 public class Gestos extends AppCompatActivity implements OnClickListener{
 
@@ -39,6 +40,8 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
         btn = (Button)findViewById(R.id.btnCaptura);
         btn.setOnClickListener(this);
         img = (ImageView) findViewById(R.id.imagen);
+        Toast toast = Toast.makeText(this, "Realiza el patrón que se indica arriba", Toast.LENGTH_LONG);
+        toast.show();
     }
 
     @Override
