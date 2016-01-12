@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="REALIZA EL PATRON 1-5-9-6-3-2-5"
+        android:text="REALIZA EL PATRON 1-5-9-6-3-2"
         android:id="@+id/instruccion"
         android:layout_centerHorizontal="true"
         android:background="@color/background_material_light"

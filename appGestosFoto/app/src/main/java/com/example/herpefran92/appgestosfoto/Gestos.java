@@ -80,6 +80,12 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
             if(tocado6 && (aux_x >= (x_3-rango)) && (aux_x <= (x_3+rango))) {
                 if ((aux_y >= (y_3 - rango)) && (aux_y <= (y_3 + rango))) {
                     tocado3 = true;
+                    gesto.setText("Tocado1-5-9-6-3");
+                }
+            }
+            if(tocado3 && (aux_x >= (x_2-rango)) && (aux_x <= (x_2+rango))) {
+                if ((aux_y >= (y_2 - rango)) && (aux_y <= (y_2 + rango))) {
+                    tocado2 = true;
                     gesto.setText("Gesto aceptado");
                     if (fotolanzada == false) {
                         fotolanzada = true;
@@ -98,6 +104,18 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
             }
             if (tocado9 && (aux_x >= (x_5-rango)) && (aux_x <= (x_5+rango))){
                 if ((aux_y >= (y_5-rango)) && (aux_y <= (y_5+rango))){
+                    tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
+                    gesto.setText("Intentalo de nuevo");
+                }
+            }
+            if (tocado6 && (aux_x >= (x_9-rango)) && (aux_x <= (x_9+rango))){
+                if ((aux_y >= (y_9-rango)) && (aux_y <= (y_9+rango))){
+                    tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
+                    gesto.setText("Intentalo de nuevo");
+                }
+            }
+            if (tocado3 && (aux_x >= (x_6-rango)) && (aux_x <= (x_6+rango))){
+                if ((aux_y >= (y_6-rango)) && (aux_y <= (y_6+rango))){
                     tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
                     gesto.setText("Intentalo de nuevo");
                 }
