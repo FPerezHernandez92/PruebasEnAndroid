@@ -40,6 +40,15 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
         toast.show();
     }
 
+    public boolean compruebaToque(int aux_x, int aux_y, int x, int y, int rango){
+        boolean res = false;
+        if((aux_x >= (x-rango)) && (aux_x <= (x+rango))){
+            if ((aux_y >= (y-rango)) && (aux_y <= (y+rango))){
+                res = true;
+            }
+        }
+        return res;
+    }
     @Override
     public boolean onTouchEvent(MotionEvent event){
         if (event.getAction()==MotionEvent.ACTION_MOVE){
@@ -52,47 +61,58 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
             int x_2 = 384, y_2 = 341, x_4 = 163, y_4 = 481, x_7 = 158, y_7 = 621, x_8 = 381, y_8 = 618;
             int ast_x = 155, ast_y = 753, x_0 = 381, y_0 = 759, alm_x = 613, alm_y = 756;
 
-            if((aux_x >= (x_1-rango)) && (aux_x <= (x_1+rango))){
-                if ((aux_y >= (y_1-rango)) && (aux_y <= (y_1+rango))){
-                    tocado1 = true;
+            if (aux_y < 220 || aux_y > 834 || aux_x < 36 || aux_x > 735){
+                tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = tocado2 = false;
+                gesto.setText("Intentalo de nuevo");
+            }
+
+            if (!tocado1){
+                tocado1 = compruebaToque(aux_x, aux_y, x_1, y_1, rango);
+                if (tocado1){
                     gesto.setText("Tocado1");
                     fotolanzada = false;
                 }
             }
-            if(tocado1 && (aux_x >= (x_5-rango)) && (aux_x <= (x_5+rango))){
-                if ((aux_y >= (y_5-rango)) && (aux_y <= (y_5+rango))){
-                    tocado5 = true;
-                    gesto.setText("Tocado1-5");
-                }
-            }
-            if(tocado5 && (aux_x >= (x_9-rango)) && (aux_x <= (x_9+rango))){
-                if ((aux_y >= (y_9-rango)) && (aux_y <= (y_9+rango))){
-                    tocado9 = true;
-                    gesto.setText("Tocado1-5-9");
-                }
-            }
-            if(tocado9 && (aux_x >= (x_6-rango)) && (aux_x <= (x_6+rango))){
-                if ((aux_y >= (y_6-rango)) && (aux_y <= (y_6+rango))){
-                    tocado6 = true;
-                    gesto.setText("Tocado1-5-9-6");
-                }
-            }
-            if(tocado6 && (aux_x >= (x_3-rango)) && (aux_x <= (x_3+rango))) {
-                if ((aux_y >= (y_3 - rango)) && (aux_y <= (y_3 + rango))) {
-                    tocado3 = true;
-                    gesto.setText("Tocado1-5-9-6-3");
-                }
-            }
-            if(tocado3 && (aux_x >= (x_2-rango)) && (aux_x <= (x_2+rango))) {
-                if ((aux_y >= (y_2 - rango)) && (aux_y <= (y_2 + rango))) {
-                    tocado2 = true;
-                    gesto.setText("Gesto aceptado");
-                    if (fotolanzada == false) {
-                        fotolanzada = true;
-                        i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        startActivityForResult(i, cons);
+            else if (tocado1) {
+                if (!tocado5) {
+                    tocado5 = compruebaToque(aux_x, aux_y, x_5, y_5, rango);
+                    if (tocado5) {
+                        gesto.setText("Tocado1-5");
                     }
-
+                } else if (tocado5) {
+                    if (!tocado9) {
+                        tocado9 = compruebaToque(aux_x, aux_y, x_9, y_9, rango);
+                        if (tocado9) {
+                            gesto.setText("Tocado1-5-9");
+                        }
+                    } else if (tocado9) {
+                        if (!tocado6) {
+                            tocado6 = compruebaToque(aux_x, aux_y, x_6, y_6, rango);
+                            if (tocado6) {
+                                gesto.setText("Tocado1-5-9-6");
+                            }
+                        } else if (tocado6) {
+                            if (!tocado3) {
+                                tocado3 = compruebaToque(aux_x, aux_y, x_3, y_3, rango);
+                                if (tocado3) {
+                                    gesto.setText("Tocado1-5-9-6-3");
+                                }
+                            } else if (tocado3) {
+                                if (!tocado2) {
+                                    tocado2 = compruebaToque(aux_x, aux_y, x_2, y_2, rango);
+                                    if (tocado2) {
+                                        gesto.setText("Gesto aceptado");
+                                        if (fotolanzada == false) {
+                                            fotolanzada = true;
+                                            i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                            startActivityForResult(i, cons);
+                                            tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = tocado2 = false;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
