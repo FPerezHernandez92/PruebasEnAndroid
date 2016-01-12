@@ -18,27 +18,23 @@ import android.widget.Toast;
 
 public class Gestos extends AppCompatActivity implements OnClickListener{
 
-    Button btn;
     ImageView img;
     Intent i;
     Bitmap bmp;
     final static int cons = 0;
 
-    TextView salida_x, salida_y, gesto;
+    TextView gesto;
     Boolean tocado1=false, tocado5=false, tocado9=false, tocado6=false, tocado3=false, fotolanzada = false;
+    boolean tocado2 = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestos);
-        salida_x = (TextView) findViewById(R.id.pos_x);
-        salida_y = (TextView) findViewById(R.id.pos_y);
         gesto = (TextView) findViewById(R.id.gesto);
         init();
     }
 
     public void init(){
-        btn = (Button)findViewById(R.id.btnCaptura);
-        btn.setOnClickListener(this);
         img = (ImageView) findViewById(R.id.imagen);
         Toast toast = Toast.makeText(this, "Realiza el patrón que se indica arriba", Toast.LENGTH_LONG);
         toast.show();
@@ -49,8 +45,6 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
         if (event.getAction()==MotionEvent.ACTION_MOVE){
             int aux_x = (int) event.getRawX();
             int aux_y = (int) event.getRawY();
-            salida_x.setText("Pos_X: " + Integer.toString(aux_x));
-            salida_y.setText("Pos_Y: " + Integer.toString(aux_y));
             int rango = 50;
             int x_1 = 162, y_1 = 346, x_5 = 387, y_5 = 475, x_9 = 610, y_9 = 625;
             int x_6 = 614, y_6 = 482, x_3 = 616, y_3 = 341;
@@ -62,6 +56,7 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
                 if ((aux_y >= (y_1-rango)) && (aux_y <= (y_1+rango))){
                     tocado1 = true;
                     gesto.setText("Tocado1");
+                    fotolanzada = false;
                 }
             }
             if(tocado1 && (aux_x >= (x_5-rango)) && (aux_x <= (x_5+rango))){
@@ -94,6 +89,20 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
 
                 }
             }
+
+            if (tocado5 && (aux_x >= (x_1-rango)) && (aux_x <= (x_1+rango))){
+                if ((aux_y >= (y_1-rango)) && (aux_y <= (y_1+rango))){
+                    tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
+                    gesto.setText("Intentalo de nuevo");
+                }
+            }
+            if (tocado9 && (aux_x >= (x_5-rango)) && (aux_x <= (x_5+rango))){
+                if ((aux_y >= (y_5-rango)) && (aux_y <= (y_5+rango))){
+                    tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
+                    gesto.setText("Intentalo de nuevo");
+                }
+            }
+
             if((aux_x >= (x_2-rango2)) && (aux_x <= (x_2+rango2))) {
                 if ((aux_y >= (y_2 - rango2)) && (aux_y <= (y_2 + rango2))) {
                     tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
@@ -136,6 +145,10 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
                     gesto.setText("Intentalo de nuevo");
                 }
             }
+        }
+        else if (event.getAction()==MotionEvent.ACTION_UP){
+            tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
+            gesto.setText("Intentalo de nuevo");
         }
         return true;
 

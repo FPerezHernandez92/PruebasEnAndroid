@@ -9,30 +9,22 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Pos_X"
-        android:id="@+id/pos_x"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="REALIZA EL PATRON 1-5-9-6-3-2-5"
+        android:id="@+id/instruccion"
+        android:layout_centerHorizontal="true"
+        android:background="@color/background_material_light"
+        android:textColor="@color/material_blue_grey_800"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Pos_Y"
-        android:id="@+id/pos_y"
-        android:layout_below="@+id/pos_x"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:textSize="@dimen/abc_text_size_title_material_toolbar" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/pos_y"
         android:background="@drawable/teclado2"
-        android:id="@+id/relativeLayout"></RelativeLayout>
+        android:id="@+id/relativeLayout"
+        android:layout_below="@+id/instruccion"
+        android:layout_centerHorizontal="true"></RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -51,22 +43,4 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/abc_scrubber_control_to_pressed_mtrl_005" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/btnCaptura"
-        android:layout_below="@+id/imagen"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="REALIZA EL PATRON 1-9-3"
-        android:id="@+id/instruccion"
-        android:layout_alignBottom="@+id/pos_y"
-        android:layout_alignLeft="@+id/gesto"
-        android:layout_alignStart="@+id/gesto" />
 </RelativeLayout>
