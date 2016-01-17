@@ -32,12 +32,14 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -69,6 +71,12 @@ public class ASRWithIntent extends Activity {
 	
 	private static final String LOGTAG = "ASRBEGIN";
 	private static int ASR_CODE = 123;
+
+	ListView lv;
+	Button hablar;
+	String[] datos = {"h"};
+	ArrayList<String> nBestView = new ArrayList<String>();
+	//TextView seleccionado;
 	
 	/**
 	 * Sets up the activity initializing the GUI
@@ -77,10 +85,20 @@ public class ASRWithIntent extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.asrwithintent);
-		
+
 		//Shows in the GUI the default values for the language model and the maximum number of recognition results
 		showDefaultValues(); 
+		lv = (ListView) findViewById(R.id.nbest_listview);
+		hablar = (Button) findViewById(R.id.speech_btn);
+		//seleccionado = (TextView)findViewById(R.id.seleccionado);
+		lv.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,datos));
 
+		lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				hablar.setText(nBestView.get(position));
+			}
+		});
 		setSpeakButton();
 	}
 	
@@ -198,7 +216,7 @@ public class ASRWithIntent extends Activity {
 	            	
 					//Creates a collection of strings, each one with a recognition result and its confidence
 	            	//following the structure "Phrase matched (conf: 0.5)"
-					ArrayList<String> nBestView = new ArrayList<String>();
+
 
 					ArrayList<String> misMejores = new ArrayList<String>();
 
