@@ -5,11 +5,17 @@
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TableLayout
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/plant"
+        android:layout_weight="1" />
+
+   <!-- <TableLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="4"
         android:layout_gravity="top|center_horizontal">
 
         <TableRow>
@@ -20,7 +26,7 @@
                 android:layout_height="wrap_content"
                 />
         </TableRow>
-    </TableLayout>
+    </TableLayout> -->
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,6 +35,6 @@
         android:text="Large Text"
         android:id="@+id/instrucciones"
         android:layout_gravity="center"
-        android:layout_weight="2" />
+        android:layout_weight="4" />
 
 </LinearLayout>
