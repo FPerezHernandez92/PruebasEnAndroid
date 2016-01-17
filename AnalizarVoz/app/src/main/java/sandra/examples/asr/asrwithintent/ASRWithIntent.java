@@ -97,6 +97,8 @@ public class ASRWithIntent extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				hablar.setText(nBestView.get(position));
+				Intent i = new Intent(this,Compass.class);
+				startActivity(i);
 			}
 		});
 		setSpeakButton();
