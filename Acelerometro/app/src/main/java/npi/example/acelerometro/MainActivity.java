@@ -8,18 +8,20 @@ import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements SensorEventListener {
     private SensorManager sensorManager;
 
-    TextView xCoor; // declare X axis object
-    TextView yCoor; // declare Y axis object
-    TextView zCoor; // declare Z axis object
+    ImageView candado;
+    ImageView motor;
+    ImageView ejemp;
 
     boolean arrancado = false;
     boolean llaveDentro = false;
     boolean cerrado = true;
+    boolean pitando = false;
 
     static final String STATE_ARRANCADO = "motorArrancado";
     static final String STATE_LLAVE = "llaveDentro";
@@ -41,9 +43,10 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         setContentView(R.layout.activity_main);
 
-        xCoor=(TextView)findViewById(R.id.xcoor); // create X axis object
-        yCoor=(TextView)findViewById(R.id.ycoor); // create Y axis object
-        zCoor=(TextView)findViewById(R.id.zcoor); // create Z axis object
+        candado=(ImageView)findViewById(R.id.cand);
+        motor=(ImageView)findViewById(R.id.moto);
+        ejemp=(ImageView)findViewById(R.id.ejemplo);
+
 
         instr=(TextView)findViewById(R.id.instrucciones);
 
@@ -53,13 +56,9 @@ public class MainActivity extends Activity implements SensorEventListener {
                 sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),
                 SensorManager.SENSOR_DELAY_NORMAL);
 
-		/*	More sensor speeds (taken from api docs)
-		    SENSOR_DELAY_FASTEST get sensor data as fast as possible
-		    SENSOR_DELAY_GAME	rate suitable for games
-		 	SENSOR_DELAY_NORMAL	rate (default) suitable for screen orientation changes
-		*/
-
-
+        candado.setImageResource(R.drawable.lock);
+        motor.setImageResource(R.drawable.apagado);
+        ejemp.setImageResource(R.drawable.pie);
 
     }
 
@@ -81,25 +80,29 @@ public class MainActivity extends Activity implements SensorEventListener {
                 instr.setText("Pon el móvil en vertical para abrir el coche");
             }
 
-            if( y > 10 && cerrado)
+            if( y > 9 && cerrado)
             {
                 cerrado = false;
 
                 final MediaPlayer mp = MediaPlayer.create(this, R.raw.car_chirp_x);
                 mp.start();
+
+                candado.setImageResource(R.drawable.unlock);
             }
 
             if(!cerrado && !llaveDentro)
             {
+                ejemp.setImageResource(R.drawable.costao);
                 instr.setText("Pon el movil en horizontal para meter la llave y girala para arrancar el motor");
             }
-            if( x > 10 && !llaveDentro && !cerrado)
+            if( x > 9 && !llaveDentro && !cerrado)
             {
                 llaveDentro = true;
             }
 
             if(llaveDentro && !arrancado)
             {
+                ejemp.setImageResource(R.drawable.arriba);
                 instr.setText(("Gira el móvil en sentido horario para arrancar"));
             }
             if( x < 0 && !arrancado && llaveDentro)
@@ -108,21 +111,25 @@ public class MainActivity extends Activity implements SensorEventListener {
 
                 final MediaPlayer mp = MediaPlayer.create(this, R.raw.car_x);
                 mp.start();
+
+                motor.setImageResource(R.drawable.encendido);
             }
 
             if( arrancado)
             {
+                ejemp.setImageResource(R.drawable.abajo);
                 instr.setText("Pon el móvil bocaabajo para tocar el claxon");
             }
-            if( arrancado && z < -10)
+            if( arrancado && z < -9 && !pitando)
             {
                 final MediaPlayer mp = MediaPlayer.create(this, R.raw.car_horn_x);
                 mp.start();
+                pitando = true;
             }
-
-            xCoor.setText("X: "+x);
-            yCoor.setText("Y: "+y);
-            zCoor.setText("Z: "+z);
+            if( z > 0)
+            {
+                pitando = false;
+            }
         }
     }
 
