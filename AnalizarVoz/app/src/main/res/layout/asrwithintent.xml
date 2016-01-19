@@ -8,16 +8,42 @@
 
     <Button
         android:id="@+id/speech_btn"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/speechbtn" />
+        android:text="@string/speechbtn"
+        android:layout_gravity="center_horizontal"
+        android:enabled="true" />
 
     <ListView
         android:id="@+id/nbest_listview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
     </ListView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal">
+
+        <TextView
+            android:id="@+id/txtAngle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="20dp"
+            android:text="Heading: 0.0" />
+
+        <ImageView
+            android:id="@+id/imgViewCompass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtAngle"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/flecha" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:orientation="vertical"
