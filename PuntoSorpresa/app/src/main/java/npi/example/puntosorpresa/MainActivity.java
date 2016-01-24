@@ -17,7 +17,6 @@ public class MainActivity extends Activity implements SensorEventListener {
    // TextView xCoor; // declare X axis object
     ImageView planta;
     TextView instr;
-    int nivel;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -38,7 +37,6 @@ public class MainActivity extends Activity implements SensorEventListener {
 
         instr.setText("Dale luz a la planta para que crezca");
         planta.setImageResource(R.drawable.plant1);
-        nivel = 1;
     }
 
     public void onAccuracyChanged(Sensor sensor,int accuracy){
@@ -54,35 +52,29 @@ public class MainActivity extends Activity implements SensorEventListener {
 
           //  xCoor.setText("X: "+ ligth);
 
-            if( ligth > 10 && nivel == 1)
+            if( ligth > 10)
             {
                 planta.setImageResource(R.drawable.plant2);
-                nivel++;
             }
-            if( ligth > 20 && nivel == 2)
+            if( ligth > 20)
             {
                 planta.setImageResource(R.drawable.plant3);
-                nivel++;
             }
-            if( ligth > 30 && nivel == 3)
+            if( ligth > 30)
             {
                 planta.setImageResource(R.drawable.plant4);
-                nivel++;
             }
-            if( ligth > 40 && nivel == 4)
+            if( ligth > 40)
             {
                 planta.setImageResource(R.drawable.plant5);
-                nivel++;
             }
-            if( ligth > 50 && nivel == 5)
+            if( ligth > 50)
             {
                 planta.setImageResource(R.drawable.plant6);
-                nivel++;
             }
-            if( ligth > 60 && nivel == 6)
+            if( ligth > 60)
             {
                 planta.setImageResource(R.drawable.plant7);
-                nivel++;
             }
         }
     }
