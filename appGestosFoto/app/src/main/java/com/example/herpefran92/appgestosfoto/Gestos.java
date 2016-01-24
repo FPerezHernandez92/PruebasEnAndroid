@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.provider.MediaStore;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Button;
@@ -18,7 +20,7 @@ import android.widget.ImageView;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
-public class Gestos extends AppCompatActivity implements OnClickListener{
+public class Gestos extends FragmentActivity implements OnClickListener{
 
     ImageView img;
     Intent i;
@@ -29,6 +31,8 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
     Boolean tocado1=false, tocado5=false, tocado9=false, tocado6=false, tocado3=false, fotolanzada = false;
     boolean tocado2 = false;
     TextView t1,t2,t3,t4,t5,t6,t7,t8,t9;
+
+    boolean isImageFitToScreen=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +47,7 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
         t8 = (TextView) findViewById(R.id.t8);
         t9 = (TextView) findViewById(R.id.t9);
         init();
+
     }
 
     public void init(){
@@ -84,13 +89,15 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
             int aux_x = (int) event.getRawX();
             int aux_y = (int) event.getRawY();
             int rango = 70;
-            int x_1 = 148, y_1 = 270, x_5 = 393, y_5 = 421, x_9 = 620, y_9 = 568;
-            int x_6 = 614, y_6 = 422, x_3 = 616, y_3 = 271;
+            int x_1 = 148, y_1 = 160, x_5 = 393, y_5 = 310, x_9 = 620, y_9 = 460;
+            int x_6 = 614, y_6 = 310, x_3 = 616, y_3 = 160;
             int rango2 = 50;
-            int x_2 = 389, y_2 = 271, x_4 = 149, y_4 = 424, x_7 = 158, y_7 = 573, x_8 = 381, y_8 = 574;
+            int x_2 = 389, y_2 = 160, x_4 = 149, y_4 = 310, x_7 = 158, y_7 = 460, x_8 = 381, y_8 = 460;
+
+
 
             //Compruebo que se está tocando dentro del patrón
-            if (aux_y < 196 || aux_y > 650 || aux_x < 40 || aux_x > 740){
+            if (aux_y < 95 || aux_y > 526 || aux_x < 40 || aux_x > 740){
                 tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = tocado2 = false;
                 cambiaTodosColor(Color.RED);
                 tengoquelevantar = true;
@@ -212,7 +219,13 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
             tengoquelevantar = false;
             cambiaTodosColor(Color.BLACK);
         }
+
+
+
+
         return true;
+
+
 
     }
 
