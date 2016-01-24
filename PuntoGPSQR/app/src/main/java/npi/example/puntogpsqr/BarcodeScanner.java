@@ -138,6 +138,8 @@ public class BarcodeScanner extends AppCompatActivity {
 
                     barcodeScanned = true;
 
+                    setContentView(R.layout.maps);
+
                     break;
                 }
             }

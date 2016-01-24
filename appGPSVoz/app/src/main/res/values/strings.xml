@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">appGPSVoz</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="welcome">BIENVENID@</string>
+    <string name="instructions">Pulse el botón y en voz alta indique latitud y longitud del destino
+        puede hacerlo en formato decimal o tradicional de grados, segundos y minutos.</string>
+    <string name="iniciar">INICIAR</string>
+
+</resources>

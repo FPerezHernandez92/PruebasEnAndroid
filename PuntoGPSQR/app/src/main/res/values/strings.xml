@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PuntoGPSQR</string>
+
+    <string name="google_api_key">AIzaSyAraJo0_NbpuoiUYpbCTV5huF5MZmC8mnE</string>
 </resources>
