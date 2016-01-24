@@ -26,7 +26,6 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
     final static int cons = 0;
     Boolean tengoquelevantar=false;
 
-    TextView gesto;
     Boolean tocado1=false, tocado5=false, tocado9=false, tocado6=false, tocado3=false, fotolanzada = false;
     boolean tocado2 = false;
     TextView t1,t2,t3,t4,t5,t6,t7,t8,t9;
@@ -34,7 +33,6 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestos);
-        gesto = (TextView) findViewById(R.id.gesto);
         t1 = (TextView) findViewById(R.id.t1);
         t2 = (TextView) findViewById(R.id.t2);
         t3 = (TextView) findViewById(R.id.t3);
@@ -49,7 +47,7 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
 
     public void init(){
         img = (ImageView) findViewById(R.id.imagen);
-        Toast toast = Toast.makeText(this, "Realiza el patrón que se indica arriba", Toast.LENGTH_LONG);
+        Toast toast = Toast.makeText(this, "Realiza el patrón", Toast.LENGTH_LONG);
         toast.show();
         cambiaTodosColor(Color.BLACK);
     }
@@ -86,23 +84,21 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
             int aux_x = (int) event.getRawX();
             int aux_y = (int) event.getRawY();
             int rango = 70;
-            int x_1 = 155, y_1 = 367, x_5 = 382, y_5 = 516, x_9 = 618, y_9 = 668;
-            int x_6 = 614, y_6 = 520, x_3 = 616, y_3 = 369;
+            int x_1 = 148, y_1 = 270, x_5 = 393, y_5 = 421, x_9 = 620, y_9 = 568;
+            int x_6 = 614, y_6 = 422, x_3 = 616, y_3 = 271;
             int rango2 = 50;
-            int x_2 = 389, y_2 = 372, x_4 = 149, y_4 = 521, x_7 = 158, y_7 = 667, x_8 = 381, y_8 = 665;
+            int x_2 = 389, y_2 = 271, x_4 = 149, y_4 = 424, x_7 = 158, y_7 = 573, x_8 = 381, y_8 = 574;
 
             //Compruebo que se está tocando dentro del patrón
-            if (aux_y < 290 || aux_y > 733 || aux_x < 40 || aux_x > 740){
+            if (aux_y < 196 || aux_y > 650 || aux_x < 40 || aux_x > 740){
                 tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = tocado2 = false;
                 cambiaTodosColor(Color.RED);
-                gesto.setText("Intentalo de nuevo");
                 tengoquelevantar = true;
             }
             else {
                 if (!tocado1 && !tengoquelevantar){
                     tocado1 = compruebaToque(aux_x, aux_y, x_1, y_1, rango);
                     if (tocado1){
-                        gesto.setText("Tocado1");
                         cambiaColor(t1,Color.GREEN);
                         fotolanzada = false;
                     }
@@ -111,35 +107,30 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
                     if (!tocado5) {
                         tocado5 = compruebaToque(aux_x, aux_y, x_5, y_5, rango);
                         if (tocado5) {
-                            gesto.setText("Tocado1-5");
                             cambiaColor(t5,Color.GREEN);
                         }
                     } else if (tocado5) {
                         if (!tocado9) {
                             tocado9 = compruebaToque(aux_x, aux_y, x_9, y_9, rango);
                             if (tocado9) {
-                                gesto.setText("Tocado1-5-9");
                                 cambiaColor(t9, Color.GREEN);
                             }
                         } else if (tocado9) {
                             if (!tocado6) {
                                 tocado6 = compruebaToque(aux_x, aux_y, x_6, y_6, rango);
                                 if (tocado6) {
-                                    gesto.setText("Tocado1-5-9-6");
                                     cambiaColor(t6, Color.GREEN);
                                 }
                             } else if (tocado6) {
                                 if (!tocado3) {
                                     tocado3 = compruebaToque(aux_x, aux_y, x_3, y_3, rango);
                                     if (tocado3) {
-                                        gesto.setText("Tocado1-5-9-6-3");
                                         cambiaColor(t3, Color.GREEN);
                                     }
                                 } else if (tocado3) {
                                     if (!tocado2) {
                                         tocado2 = compruebaToque(aux_x, aux_y, x_2, y_2, rango);
                                         if (tocado2) {
-                                            gesto.setText("Gesto aceptado");
                                             cambiaColor(t2, Color.GREEN);
                                             if (fotolanzada == false) {
                                                 fotolanzada = true;
@@ -158,7 +149,6 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
                 if (tocado5 && (aux_x >= (x_1-rango)) && (aux_x <= (x_1+rango))){
                     if ((aux_y >= (y_1-rango)) && (aux_y <= (y_1+rango))){
                         tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
-                        gesto.setText("Intentalo de nuevo");
                         tengoquelevantar = true;
                         cambiaTodosColor(Color.RED);
                     }
@@ -166,7 +156,6 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
                 if (tocado9 && (aux_x >= (x_5-rango)) && (aux_x <= (x_5+rango))){
                     if ((aux_y >= (y_5-rango)) && (aux_y <= (y_5+rango))){
                         tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
-                        gesto.setText("Intentalo de nuevo");
                         tengoquelevantar = true;
                         cambiaTodosColor(Color.RED);
                     }
@@ -174,7 +163,6 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
                 if (tocado6 && (aux_x >= (x_9-rango)) && (aux_x <= (x_9+rango))){
                     if ((aux_y >= (y_9-rango)) && (aux_y <= (y_9+rango))){
                         tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
-                        gesto.setText("Intentalo de nuevo");
                         tengoquelevantar = true;
                         cambiaTodosColor(Color.RED);
                     }
@@ -182,7 +170,6 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
                 if (tocado3 && (aux_x >= (x_6-rango)) && (aux_x <= (x_6+rango))){
                     if ((aux_y >= (y_6-rango)) && (aux_y <= (y_6+rango))){
                         tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
-                        gesto.setText("Intentalo de nuevo");
                         tengoquelevantar = true;
                         cambiaTodosColor(Color.RED);
                     }
@@ -191,7 +178,6 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
                 if((aux_x >= (x_2-rango2)) && (aux_x <= (x_2+rango2))) {
                     if ((aux_y >= (y_2 - rango2)) && (aux_y <= (y_2 + rango2))) {
                         tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
-                        gesto.setText("Intentalo de nuevo");
                         tengoquelevantar = true;
                         cambiaTodosColor(Color.RED);
                     }
@@ -199,7 +185,6 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
                 if((aux_x >= (x_4-rango2)) && (aux_x <= (x_4+rango2))) {
                     if ((aux_y >= (y_4 - rango2)) && (aux_y <= (y_4 + rango2))) {
                         tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
-                        gesto.setText("Intentalo de nuevo");
                         tengoquelevantar = true;
                         cambiaTodosColor(Color.RED);
                     }
@@ -207,7 +192,6 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
                 if((aux_x >= (x_7-rango2)) && (aux_x <= (x_7+rango2))) {
                     if ((aux_y >= (y_7 - rango2)) && (aux_y <= (y_7 + rango2))) {
                         tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
-                        gesto.setText("Intentalo de nuevo");
                         tengoquelevantar = true;
                         cambiaTodosColor(Color.RED);
                     }
@@ -215,7 +199,6 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
                 if((aux_x >= (x_8-rango2)) && (aux_x <= (x_8+rango2))) {
                     if ((aux_y >= (y_8 - rango2)) && (aux_y <= (y_8 + rango2))) {
                         tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
-                        gesto.setText("Intentalo de nuevo");
                         tengoquelevantar = true;
                         cambiaTodosColor(Color.RED);
                     }
@@ -226,7 +209,6 @@ public class Gestos extends AppCompatActivity implements OnClickListener{
         }
         else if (event.getAction()==MotionEvent.ACTION_UP){
             tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = false;
-            gesto.setText("Intentalo de nuevo");
             tengoquelevantar = false;
             cambiaTodosColor(Color.BLACK);
         }
