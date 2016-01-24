@@ -10,8 +10,10 @@ import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -95,7 +97,6 @@ public class Gestos extends FragmentActivity implements OnClickListener{
             int x_2 = 389, y_2 = 160, x_4 = 149, y_4 = 310, x_7 = 158, y_7 = 460, x_8 = 381, y_8 = 460;
 
 
-
             //Compruebo que se está tocando dentro del patrón
             if (aux_y < 95 || aux_y > 526 || aux_x < 40 || aux_x > 740){
                 tocado1 = tocado3 = tocado5 = tocado6 = tocado9 = tocado2 = false;
@@ -106,9 +107,11 @@ public class Gestos extends FragmentActivity implements OnClickListener{
                 if (!tocado1 && !tengoquelevantar){
                     tocado1 = compruebaToque(aux_x, aux_y, x_1, y_1, rango);
                     if (tocado1){
-                        cambiaColor(t1,Color.GREEN);
+                        cambiaColor(t1, Color.GREEN);
                         fotolanzada = false;
+
                     }
+
                 }
                 else if (tocado1 && !tengoquelevantar) {
                     if (!tocado5) {
