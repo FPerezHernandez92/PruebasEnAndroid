@@ -1,6 +1,7 @@
 package npi.example.puntogpsqr;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.hardware.Camera;
 import android.os.Bundle;
@@ -137,6 +138,10 @@ public class BarcodeScanner extends AppCompatActivity {
                             Toast.LENGTH_SHORT).show();*/
 
                     barcodeScanned = true;
+
+                    Intent coo = new Intent(BarcodeScanner.this, MapFragment.class);
+                    getIntent().putExtra("Co", scanResult);
+                    startActivity(coo);
 
                     setContentView(R.layout.maps);
 
